@@ -22,14 +22,23 @@ class DefaultController extends Controller
      * @Route("/shows", name="shows")
      * @Template()
      */
-    public function showsAction()
+    public function showsAction(Request $request)
     {
         $em = $this->get('doctrine')->getManager();
         $repo = $em->getRepository('AppBundle:TVShow');
 
-        return [
-            'shows' => $repo->findAll()
-        ];
+        $dql   = "SELECT a FROM AcmeMainBundle:Article a";
+        $query = $em->createQuery($dql);
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $repo->findAll(), /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            6/*limit per page*/
+        );
+
+        // parameters to template
+        return $this->render('AppBundle:Default:shows.html.twig', array('pagination' => $pagination));
     }
 
     /**
@@ -43,7 +52,7 @@ class DefaultController extends Controller
 
         return [
             'show' => $repo->find($id)
-        ];        
+        ];
     }
 
     /**
