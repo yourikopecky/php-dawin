@@ -1,3 +1,7 @@
+Required
+========================
+Elasticsearch 1.x est requis pour la recherche.
+
 Symfony Standard Edition
 ========================
 
