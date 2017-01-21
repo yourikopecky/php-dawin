@@ -147,8 +147,7 @@ class AdminController extends Controller
     {
         $form = $this->createFormBuilder()
             ->add('keyword')
-            ->getForm()
-            ;
+            ->getForm();
 
         $result = [];
         $form->handleRequest($request);
@@ -163,5 +162,29 @@ class AdminController extends Controller
             'form' => $form->createView(),
             'result' => $result
         ];
+    }
+
+    /**
+     * @Route("/omdb_import/{title}", name="omdb_import")
+     */
+    public function omdb_import($title, Request $request)
+    {
+        $omdb = new OMDbAPI();
+        $result = [];
+        $result = $omdb->fetch('t', $title);
+        $result = json_decode(json_encode($result), true);
+
+        $show = new TVShow();
+        $show->setName($result['data']['Title']);
+        $show->setSynopsis($result['data']['Plot']);
+        $show->setImage($result['data']['Poster']);
+
+        $em = $this->getDoctrine()->getManager();
+
+        $em->persist($show);
+
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('show', array('id' => $show->getId())));
     }
 }

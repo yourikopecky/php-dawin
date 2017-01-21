@@ -15,7 +15,7 @@
     		</form>
 
             {% for entry in result %}
-                <a href="#" class="tvshow col-sm-6">
+                <a href="{{ path('omdb_import', {'title': entry.Title}) }}" class="tvshow col-sm-6">
                     {% if entry.Poster != 'N/A' %}
                         <img class="pull-left" src="{{ image(entry.Poster).resize(100, 100).png }}" />
                     {% endif %}
