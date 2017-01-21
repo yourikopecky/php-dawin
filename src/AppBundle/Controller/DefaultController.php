@@ -61,7 +61,15 @@ class DefaultController extends Controller
      */
     public function calendarAction()
     {
-        return [];
+        $em = $this->get('doctrine')->getManager();
+        $episodes = $em->getRepository('AppBundle:Episode')
+                    ->createQueryBuilder('q')
+                    ->setParameter('today', new \DateTime())
+                    ->where('q.date > :today')
+                    ->orderBy('q.date', 'ASC')
+                    ->getQuery()
+                    ->getResult();
+        return ['episodes' => $episodes];
     }
 
     /**

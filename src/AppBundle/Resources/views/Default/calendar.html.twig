@@ -5,7 +5,11 @@
 {% block contents %}
     <section>
     	<div class="container">
-    		
+    	<h3>Calendrier</h3>
+        {% for episode in episodes %}
+            <h4>{{ episode.name }} (date : {{ episode.date|date("d/m/Y") }})</h4>
+        </a>
+        {% endfor %}
     	</div>
     </section>
 {% endblock %}
