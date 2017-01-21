@@ -25,7 +25,6 @@
         "gregwar/image-bundle": "*",
         "aharen/omdbapi": "dev-master",
         "knplabs/knp-paginator-bundle": "^2.5",
-        "elasticsearch/elasticsearch": "~2.0",
         "friendsofsymfony/elastica-bundle": "^3.2"
     },
     "require-dev": {
