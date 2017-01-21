@@ -72,4 +72,19 @@ class DefaultController extends Controller
     {
         return [];
     }
+
+    /**
+     * @Route("/search", name="search")
+     * @Template()
+     */
+    public function searchAction(Request $req)
+    {
+        $query = $req->request->get('searchQuery');
+
+        $finder = $this->container->get('fos_elastica.finder.app.tv_show');
+        $results = $finder->find($query);
+        return [
+            'results' => $results
+        ];;
+    }
 }

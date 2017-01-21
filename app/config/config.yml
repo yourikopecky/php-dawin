@@ -68,3 +68,23 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+# FOSElastica Configuration
+fos_elastica:
+    clients:
+        default: { host: localhost, port: 9200 }
+    indexes:
+        app:
+            types:
+                t_v_show:
+                    mappings:
+                        id: ~
+                        name: ~
+                        synopsis: ~
+                        image: ~
+                    persistence:
+                        driver: orm
+                        model: AppBundle\Entity\TVShow
+                        provider: ~
+                        listener: ~
+                        finder: ~

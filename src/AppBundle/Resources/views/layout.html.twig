@@ -38,10 +38,10 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <form action="#" method="post">
+                        <form action="{{ path('search') }}" method="post">
 	                        <div class="input-group">
 	                            <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-	                            <input class="form-control" />
+	                            <input class="form-control" name="searchQuery" />
 	                        </div>
                         </form>
                     </li>

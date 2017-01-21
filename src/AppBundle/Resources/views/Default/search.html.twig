@@ -1,0 +1,18 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block menu_shows %}active{% endblock %}
+
+{% block contents %}
+    <section>
+    	<div class="container">
+    		<h3>Résultats</h3>
+    		{% for result in results %}
+                <a href="{{ path('show', {id: result.id}) }}" class="tvshow col-sm-6">
+                    <img class="pull-left" src="{{ web_image('uploads/'~result.image).resize(100, 100).png }}" />
+                    <h4>{{ result.name }}</h4>
+                    {{ result.synopsis }}
+                </a>
+    		{% endfor %}
+    	</div>
+    </section>
+{% endblock %}
