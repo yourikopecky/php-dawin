@@ -1,4 +1,4 @@
-Required
+Requis
 ========================
 Elasticsearch 1.x est requis pour la recherche.
 
