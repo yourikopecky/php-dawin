@@ -2,6 +2,8 @@ Requis
 ========================
 Elasticsearch 1.x est requis pour la recherche.
 
+Executer 'php app/console fos:elastica:populate' pour que la recherche puisse fonctionner.
+
 Symfony Standard Edition
 ========================
 
